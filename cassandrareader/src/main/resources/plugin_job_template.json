@@ -1,0 +1,39 @@
+{
+  "name": "cassandrareader",
+  "parameter": {
+    "sliceRecordCount": 1000,
+    "nodes": [
+      "10.90.0.4"
+    ],
+    "port": null,
+    "username": "wedefend",
+    "password": "Wolaidai2018",
+    "keyspace": "pangu",
+    "table": "b_order",
+    "partitionWhere": "",
+    "clusterFrom": "",
+    "clusterTo": "",
+    "column": [
+      {
+        "name": "account",
+        "type": "string"
+      },
+      {
+        "name": "service",
+        "type": "string"
+      },
+      {
+        "name": "invoke_time",
+        "type": "string"
+      },
+      {
+        "name": "log_time",
+        "type": "date"
+      },
+      {
+        "name": "data",
+        "type": "string"
+      }
+    ]
+  }
+}
