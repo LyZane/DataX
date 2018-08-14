@@ -1,38 +1,41 @@
 {
   "name": "cassandrareader",
   "parameter": {
-    "sliceRecordCount": 1000,
-    "nodes": [
-      "10.90.0.4"
-    ],
-    "port": null,
-    "username": "wedefend",
-    "password": "Wolaidai2018",
-    "keyspace": "pangu",
-    "table": "b_order",
-    "partitionWhere": "",
-    "clusterFrom": "",
-    "clusterTo": "",
+    "connection": {
+      "nodes": [
+        ""
+      ],
+      "port": null,
+      "username": "",
+      "password": ""
+    },
+    "keyspace": "",
+    "table": "",
+    "fetchSize": 100,
+    "where": {
+      "partitionWhere": "",
+      "range": {
+        "column": "",
+        "from": "",
+        "to": ""
+      },
+      "allowFiltering": false
+    },
     "column": [
       {
-        "name": "account",
-        "type": "string"
+        "name": "account"
       },
       {
-        "name": "service",
-        "type": "string"
+        "name": "service"
       },
       {
-        "name": "invoke_time",
-        "type": "string"
+        "name": "invoke_time"
       },
       {
-        "name": "log_time",
-        "type": "date"
+        "name": "log_time"
       },
       {
-        "name": "data",
-        "type": "string"
+        "name": "data"
       }
     ]
   }

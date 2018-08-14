@@ -1,15 +1,6 @@
 package com.alibaba.datax.plugin.reader.cassandrareader;
 
-import com.alibaba.datax.common.plugin.RecordSender;
 import com.alibaba.datax.common.spi.ErrorCode;
-import com.alibaba.datax.common.spi.Reader;
-import com.alibaba.datax.common.util.Configuration;
-import com.datastax.driver.core.Cluster;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /**
  * @author Zane
@@ -18,7 +9,12 @@ import java.util.List;
 public enum CassandraReaderErrorCode implements ErrorCode {
 
     AUTHENTICATION_ERROR("Authentication error", "授权失败，请检查配置。"),
-    COLUMNS_IS_EMPTY("Columns is empty", "columns 不能为空。");
+    COLUMN_NAME_ERROR("Column name error", "错误的字段名称：%s"),
+    UNSUPPORTED_DATA_TYPE("Unsupported data type", "暂不支持的数据类型：%s"),
+    CASSANDRA_CQL_ERROR("Cassandra cql error", "错误的 cql 语句：%s"),
+    CASSANDRA_EXECUTE_TIMEOUT("Cassandra execute timeout", "cql 执行超时：%s"),
+    CASSANDRA_EXECUTE_INTERRUPTED("Cassandra execute interrupted", "cql 执行时被意外中断：%s");
+
 
     private final String code;
     private final String description;
@@ -36,5 +32,9 @@ public enum CassandraReaderErrorCode implements ErrorCode {
     @Override
     public String getDescription() {
         return this.description;
+    }
+
+    public String getDescription(String... args) {
+        return String.format(this.description, args);
     }
 }

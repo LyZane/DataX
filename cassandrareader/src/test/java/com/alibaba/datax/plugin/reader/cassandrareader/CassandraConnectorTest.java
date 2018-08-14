@@ -1,12 +1,13 @@
 package com.alibaba.datax.plugin.reader.cassandrareader;
 
 
+import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @author Zane
@@ -15,23 +16,29 @@ import java.util.Iterator;
 public class CassandraConnectorTest {
 
 
-    @Before
-    public void init() {
-        CassandraUtil.init(new String[]{"10.90.0.4"}, null, "wedefend", "Wolaidai2018");
+    @BeforeAll
+    public static void init() {
+        CassandraUtil.init(new String[]{""}, null, "", "");
     }
-    @After
-    public void close() {
+
+    @AfterAll
+    public static void close() {
         CassandraUtil.close();
     }
 
     @Test
     public void query() {
-        Iterator<Row> iterator = CassandraUtil.executeQuery("select * from pangu.b_order limit 10;");
-
-        while (iterator.hasNext()) {
-            Row row = iterator.next();
+        ResultSet resultSet = CassandraUtil.executeQuery("");
+        for (Row row : resultSet) {
             System.out.println(row);
         }
+    }
 
+    @Test
+    public void getTableColumns() {
+        Map<String, CassandraUtil.CassColumn> tableColumns = CassandraUtil.getTableColumns("", "");
+        for (CassandraUtil.CassColumn column : tableColumns.values()) {
+            System.out.println(column);
+        }
     }
 }
